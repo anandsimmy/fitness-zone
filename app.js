@@ -11,6 +11,7 @@ const auth = require('./auth');
 // require database connection
 const dbConnect = require('./db/dbConnect');
 const User = require('./db/userModel');
+const Customer = require('./db/customerModel');
 
 dbConnect();
 
@@ -122,6 +123,34 @@ app.post('/login', (request, response) => {
       response.status(404).send({
         message: 'Email not found',
         e,
+      });
+    });
+});
+
+app.post('/addNewCustomer', auth, (request, response) => {
+  const { name, age, email, plan, date, comment } = request.body;
+  const customer = new Customer({
+    name,
+    age,
+    email,
+    date,
+    plans: [plan],
+    comments: [comment],
+  });
+
+  // saving customer to db
+  customer
+    .save()
+    .then((result) => {
+      response.status(201).send({
+        message: 'New Customer added Successfully',
+        result,
+      });
+    })
+    .catch((error) => {
+      response.status(500).send({
+        message: 'Error creating customer',
+        error,
       });
     });
 });
