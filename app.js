@@ -128,14 +128,14 @@ app.post('/login', (request, response) => {
 });
 
 app.post('/addNewCustomer', auth, (request, response) => {
-  const { name, age, email, plan, date, comment } = request.body;
+  const { customer_name, age, email, planType, startDate, endDate, comment } =
+    request.body;
   const customer = new Customer({
-    name,
+    name: customer_name,
     age,
     email,
-    date,
-    plans: [plan],
-    comments: [comment],
+    plans: [{ planType, startDate, endDate }],
+    comments: [{ body: comment }],
   });
 
   // saving customer to db
@@ -143,12 +143,14 @@ app.post('/addNewCustomer', auth, (request, response) => {
     .save()
     .then((result) => {
       response.status(201).send({
+        ok: true,
         message: 'New Customer added Successfully',
         result,
       });
     })
     .catch((error) => {
       response.status(500).send({
+        ok: false,
         message: 'Error creating customer',
         error,
       });

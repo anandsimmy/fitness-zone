@@ -1,0 +1,69 @@
+.mainContainer {
+    display: flex;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    margin: 1em;
+}
+
+.labelContainer {
+    position: relative;
+    padding: 1em 0 1em 1em;
+    display: flex;
+    align-items: center;
+}
+
+.labelWrapper {
+    display: inline-block;
+    width: 6em;
+}
+
+.labelWrapper:before {
+    left: 1em;
+    right: 0;
+    top: 0;
+    border-top: 1px solid #ccc;
+    content: "";
+    position: absolute;
+}
+
+.labelContainer:nth-of-type(1) .labelWrapper:before {
+    border-color: transparent;
+}
+
+.inputWrapper {
+    border: none;
+    padding: 10px 0;
+    display: flex;
+    flex-grow: 1;
+}
+
+.inputWrapper:focus {
+    outline: none;
+}
+
+.commentsContainer {
+    height: 100px;
+    border: 1px dotted gray;
+    text-align: center;
+}
+
+.submitContainer {
+margin-bottom: 10px;
+}
+
+.submitButton {
+    padding: 10px;
+    background-color: chartreuse;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 500px;
+}
