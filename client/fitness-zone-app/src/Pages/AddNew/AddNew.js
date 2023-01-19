@@ -1,16 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './AddNew.css';
 
 const AddNew = () => {
+  // for calculating end date
+  const endDate = new Date();
+  endDate.setMonth(endDate.getMonth() + 1);
+
   const [formData, setFormData] = useState({
     customer_name: '',
     age: '',
     email: '',
-    planType: '',
-    startDate: '',
-    endDate: '',
+    planType: '1',
+    startDate: new Date().toISOString().split('T')[0],
+    endDate: endDate.toISOString().split('T')[0],
     comment: '',
   });
+
+  useEffect(() => {
+    // for calculating end date
+    const endDate = new Date(formData.startDate);
+    endDate.setMonth(endDate.getMonth() + parseInt(formData.planType));
+    setFormData((formData) => ({
+      ...formData,
+      endDate: endDate.toISOString().split('T')[0],
+    }));
+  }, [formData.planType, formData.startDate]);
 
   const onChangeHandler = (e) => {
     setFormData((prevData) => {
@@ -84,15 +98,49 @@ const AddNew = () => {
         </label>
         <label className='labelContainer'>
           <span className='labelWrapper'>Plan</span>
-          <input
-            type='text'
-            name='planType'
-            placeholder='Enter Plan'
-            className='inputWrapper'
-            value={formData.plan}
-            onChange={onChangeHandler}
-            required
-          />
+          <div className='planWrapper'>
+            <span className='inputTypeWrapper'>
+              <input
+                type='radio'
+                value={1}
+                name='planType'
+                required
+                onChange={onChangeHandler}
+                defaultChecked
+              />{' '}
+              1 month
+            </span>
+            <span className='inputTypeWrapper'>
+              <input
+                type='radio'
+                value={3}
+                name='planType'
+                required
+                onChange={onChangeHandler}
+              />{' '}
+              3 month
+            </span>
+            <span className='inputTypeWrapper'>
+              <input
+                type='radio'
+                value={6}
+                name='planType'
+                required
+                onChange={onChangeHandler}
+              />{' '}
+              6 month
+            </span>
+            <span className='inputTypeWrapper'>
+              <input
+                type='radio'
+                value={12}
+                name='planType'
+                required
+                onChange={onChangeHandler}
+              />
+              12 month
+            </span>
+          </div>
         </label>
         <label className='labelContainer'>
           <span className='labelWrapper'>Start Date</span>
@@ -100,8 +148,8 @@ const AddNew = () => {
             type='date'
             name='startDate'
             placeholder='Enter Start Date'
-            className='inputWrapper'
-            value={formData.start_date}
+            className='inputWrapper dateWrapper'
+            value={formData.startDate}
             onChange={onChangeHandler}
             required
           />
@@ -112,8 +160,8 @@ const AddNew = () => {
             type='date'
             name='endDate'
             placeholder='Enter End Date'
-            className='inputWrapper'
-            value={formData.end_date}
+            className='inputWrapper dateWrapper'
+            value={formData.endDate}
             onChange={onChangeHandler}
           />
         </label>

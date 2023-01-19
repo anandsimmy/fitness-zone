@@ -67,3 +67,16 @@ margin-bottom: 10px;
     width: 100%;
     max-width: 500px;
 }
+
+.planWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputTypeWrapper {
+    margin: 5px 0;
+}
+
+.dateWrapper {
+    flex-grow: 0;
+}
