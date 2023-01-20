@@ -43,7 +43,7 @@ const AddNew = () => {
         'Content-Type': 'application/json',
         Authorization:
           'Bearer ' +
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2IyNTdkMjgyZmE3MTlhN2U3YTExNWIiLCJ1c2VyRW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY3MzkyMzgzNiwiZXhwIjoxNjc0MDEwMjM2fQ.SwOVg1Ro9Cg8WSBeHonHfSFcufcuYT9CuRdMb9LO7Ig',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2IyNTdkMjgyZmE3MTlhN2U3YTExNWIiLCJ1c2VyRW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY3NDA5ODc4MywiZXhwIjoxNjc0MTg1MTgzfQ.wnIkdYGe7Sgp2Bds0GPHmhIp6xnkrBhMyjxpwz5go94',
       },
       body: JSON.stringify(formData),
     })
@@ -53,9 +53,12 @@ const AddNew = () => {
           console.log('Successfully added', data);
           return;
         }
-        throw new Error(data.message);
+        // throwing error
+        throw data;
       })
-      .catch((error) => console.log('Sorry, Please try again', error));
+      .catch((error) => {
+        console.log('Sorry, Please try again.', error.message, error);
+      });
   };
 
   return (

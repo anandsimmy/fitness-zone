@@ -1,8 +1,55 @@
 .App {
-  background-color: #282c34;
+  background-color: #0c0c0c;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
+}
+
+.backgroundImageWrapper {
+  height: 60vh;
+  width: 100vw;
+  position: absolute;
+  bottom: 0;
+  background-image: url('../../assets/images/peakpx.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(8px);
+}
+
+.appContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30%;
+  align-items: center;
+}
+
+.appHeader {
+  font-family: 'Unbounded', cursive;
+  font-size: 32px;
+  color: #569afd;
+}
+
+.mainButton {
+  margin-top: 30px;
+  width: 50%;
+    padding: 10px;
+    background: rgba(0, 0, 0);
+    backdrop-filter: blur(10px);
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.mainButton a {
+  text-decoration: none;
+  color: #569afd;
 }
